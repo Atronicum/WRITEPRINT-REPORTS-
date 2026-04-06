@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Writeprint Analyser — Reports</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --brand: #7f055f;
+    --brand-dark: #5c0345;
+    --brand-deep: #3d0230;
+    --brand-soft: #f9eef6;
+    --brand-border: #d49fcb;
+    --white: #ffffff;
+    --ink: #0f0f0f;
+    --ink-3: #555;
+    --bg: #fdfcfd;
+    --border: #ece8eb;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px 24px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .mark {
+    width: 56px; height: 56px;
+    background: var(--brand);
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-size: 24px; font-weight: 800;
+    margin: 0 auto 24px;
+    box-shadow: 0 8px 32px rgba(127,5,95,0.25);
+  }
+  h1 {
+    font-size: clamp(28px, 5vw, 44px);
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    margin-bottom: 12px;
+  }
+  p {
+    font-size: 16px;
+    color: var(--ink-3);
+    max-width: 400px;
+    line-height: 1.7;
+    margin-bottom: 36px;
+  }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--brand-soft);
+    border: 1px solid var(--brand-border);
+    border-radius: 100px;
+    padding: 8px 20px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--brand);
+  }
+  .dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--brand);
+    animation: blink 2s infinite;
+  }
+  @keyframes blink {
+    0%,100% { opacity:0.9; transform:scale(1); }
+    50% { opacity:0.3; transform:scale(1.4); }
+  }
+  footer {
+    position: fixed;
+    bottom: 20px;
+    font-size: 12px;
+    color: #bbb;
+  }
+  footer a { color: var(--brand); text-decoration: none; font-weight: 500; }
+</style>
+</head>
+<body>
+  <div class="mark">W</div>
+  <h1>Writeprint Analyser<br>Reports</h1>
+  <p>Your personalised writing DNA report is ready. Each report is uniquely generated for you.</p>
+  <div class="badge">
+    <span class="dot"></span>
+    Reports are delivered via direct link
+  </div>
+  <footer>
+    Built by <a href="https://cal.com/felistus-asene/30-minutes-ai-clarity-call">Felistus Asene</a>
+    &nbsp;·&nbsp; Powered by Writeprint Analyser
+  </footer>
+</body>
+</html>
