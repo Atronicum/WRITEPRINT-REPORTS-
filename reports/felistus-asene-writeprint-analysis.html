@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Unique Writeprint Writeprint Analyser</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --brand:        #7f055f;
+    --brand-dark:   #5c0345;
+    --brand-deep:   #3d0230;
+    --brand-soft:   #f9eef6;
+    --brand-mid:    #e8c4df;
+    --brand-border: #d49fcb;
+    --white:        #ffffff;
+    --ink:          #0f0f0f;
+    --ink-2:        #2a2a2a;
+    --ink-3:        #555;
+    --ink-4:        #999;
+    --bg:           #fdfcfd;
+    --border:       #ece8eb;
+    --radius:       16px;
+    --radius-sm:    10px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.6;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ─────────────────────────────────── */
+  .nav {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    height: 60px;
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .nav-mark {
+    width: 32px; height: 32px;
+    background: var(--brand);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-size: 14px; font-weight: 800;
+  }
+  .nav-name { font-size: 14px; font-weight: 600; color: var(--ink); }
+  .nav-pill {
+    font-size: 11px; font-weight: 600;
+    color: var(--brand);
+    background: var(--brand-soft);
+    border: 1px solid var(--brand-border);
+    border-radius: 100px;
+    padding: 4px 14px;
+  }
+
+  /* ── HERO ────────────────────────────────── */
+  .hero {
+    background: linear-gradient(155deg, var(--brand-deep) 0%, var(--brand) 55%, #a0197a 100%);
+    padding: 88px 24px 96px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 50% at 50% 110%, rgba(255,255,255,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 100px;
+    padding: 6px 18px;
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 36px;
+  }
+  .hero-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: white;
+    animation: blink 2s infinite;
+  }
+  @keyframes blink {
+    0%,100% { opacity:0.9; transform:scale(1); }
+    50% { opacity:0.3; transform:scale(1.5); }
+  }
+  .hero h1 {
+    font-size: clamp(38px, 6vw, 62px);
+    font-weight: 900;
+    letter-spacing: -0.035em;
+    line-height: 1.06;
+    color: white;
+    max-width: 700px;
+    margin: 0 auto 20px;
+  }
+  .hero h1 span { opacity: 0.55; }
+  .hero-sub {
+    font-size: 17px; font-weight: 400;
+    color: rgba(255,255,255,0.58);
+    max-width: 460px;
+    margin: 0 auto 40px;
+    line-height: 1.7;
+  }
+  .hero-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 100px;
+    padding: 10px 22px;
+    font-size: 14px;
+    color: rgba(255,255,255,0.8);
+  }
+  .hero-chip strong { color: white; font-weight: 600; }
+
+  /* ── LAYOUT ──────────────────────────────── */
+  .container { max-width: 740px; margin: 0 auto; padding: 0 24px; }
+
+  /* ── SECTION ─────────────────────────────── */
+  .section { padding: 72px 0 0; }
+  .section-header { text-align: center; margin-bottom: 36px; }
+  .section-tag {
+    display: inline-block;
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--brand);
+    background: var(--brand-soft);
+    border: 1px solid var(--brand-border);
+    border-radius: 100px;
+    padding: 5px 14px;
+    margin-bottom: 14px;
+  }
+  .section-title {
+    font-size: 28px; font-weight: 800;
+    letter-spacing: -0.025em;
+    line-height: 1.15;
+    color: var(--ink);
+    margin-bottom: 10px;
+  }
+  .section-desc {
+    font-size: 15px;
+    color: var(--ink-3);
+    line-height: 1.65;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  /* ── WRITEPRINT CARD ─────────────────────── */
+  .wp-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(127,5,95,0.07);
+  }
+  .wp-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 20px;
+    background: var(--brand-deep);
+  }
+  .wp-dots { display: flex; align-items: center; gap: 7px; }
+  .dot { width: 11px; height: 11px; border-radius: 50%; }
+  .dot-r { background: #ff5f57; }
+  .dot-y { background: #febc2e; }
+  .dot-g { background: #28c840; }
+  .wp-fname {
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    color: rgba(255,255,255,0.28);
+    margin-left: 12px;
+  }
+  .copy-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: var(--brand);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px; font-weight: 600;
+    cursor: pointer;
+    transition: background 0.18s, transform 0.15s, box-shadow 0.18s;
+    white-space: nowrap;
+  }
+  .copy-btn:hover { background: var(--brand-dark); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(127,5,95,0.4); }
+  .copy-btn:active { transform: translateY(0); }
+  .copy-btn.copied { background: #1a7f5a !important; }
+  .copy-btn svg { width: 13px; height: 13px; flex-shrink: 0; }
+
+  .wp-body {
+    padding: 32px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 13px;
+    line-height: 1.9;
+    color: var(--ink-2);
+    white-space: pre-wrap;
+    word-break: break-word;
+    max-height: 580px;
+    overflow-y: auto;
+    background: #fdfbfc;
+  }
+  .wp-body::-webkit-scrollbar { width: 4px; }
+  .wp-body::-webkit-scrollbar-thumb { background: var(--brand-mid); border-radius: 4px; }
+
+  /* ── PROMPT IN ACTION ────────────────────── */
+  .prompt-card {
+    background: var(--brand-soft);
+    border: 1px solid var(--brand-border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .prompt-card-header {
+    background: var(--brand);
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .prompt-card-header span {
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.9);
+    letter-spacing: 0.01em;
+  }
+  .prompt-card-body {
+    padding: 28px;
+  }
+  .prompt-card-body p {
+    font-size: 14px;
+    color: var(--ink-3);
+    margin-bottom: 20px;
+    line-height: 1.65;
+  }
+
+  .prompt-block {
+    background: white;
+    border: 1px solid var(--brand-border);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+  }
+  .prompt-block-label {
+    background: var(--brand-deep);
+    padding: 8px 16px;
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 0.04em;
+  }
+  .prompt-block-content {
+    padding: 20px 22px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 13px;
+    line-height: 1.9;
+    color: var(--ink-2);
+    white-space: pre-wrap;
+  }
+  .ph {
+    display: inline-block;
+    background: var(--brand-soft);
+    color: var(--brand);
+    padding: 1px 7px;
+    border-radius: 4px;
+    font-weight: 600;
+    border: 1px solid var(--brand-border);
+    font-size: 12px;
+  }
+  .prompt-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    background: white;
+    border: 1px solid var(--brand-border);
+    border-left: 3px solid var(--brand);
+    border-radius: var(--radius-sm);
+    padding: 14px 18px;
+    margin-top: 16px;
+    font-size: 13px;
+    color: var(--ink-3);
+    line-height: 1.6;
+  }
+  .prompt-note-icon { font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+
+  /* ── DIVIDER ─────────────────────────────── */
+  .hr { height: 1px; background: var(--border); margin-top: 72px; }
+
+  /* ── CTA ─────────────────────────────────── */
+  .cta-wrap { padding: 72px 0 88px; }
+  .cta-card {
+    background: var(--brand-deep);
+    border-radius: 20px;
+    padding: 60px 48px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-card::before {
+    content: '';
+    position: absolute;
+    top: -120px; left: 50%;
+    transform: translateX(-50%);
+    width: 600px; height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(168,22,126,0.3) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  /* Photo avatar */
+  .cta-photo-wrap {
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    border: 3px solid rgba(255,255,255,0.2);
+    margin: 0 auto 18px;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+    background: var(--brand);
+  }
+  .cta-photo-wrap img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .cta-photo-fallback {
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 26px; font-weight: 800; color: white;
+  }
+
+  .cta-byline {
+    font-size: 12px; font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 20px;
+    position: relative; z-index: 1;
+  }
+  .cta-card h2 {
+    font-size: clamp(26px, 4vw, 38px);
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    color: white;
+    line-height: 1.1;
+    max-width: 520px;
+    margin: 0 auto 16px;
+    position: relative; z-index: 1;
+  }
+  .cta-card > p {
+    font-size: 15px;
+    color: rgba(255,255,255,0.5);
+    max-width: 440px;
+    margin: 0 auto 36px;
+    line-height: 1.7;
+    position: relative; z-index: 1;
+  }
+  .cta-list {
+    list-style: none;
+    display: inline-flex;
+    flex-direction: column;
+    gap: 12px;
+    text-align: left;
+    margin-bottom: 40px;
+    position: relative; z-index: 1;
+    max-width: 480px;
+  }
+  .cta-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 14px;
+    color: rgba(255,255,255,0.72);
+    line-height: 1.6;
+  }
+  .cta-check {
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+    font-size: 10px;
+    color: white;
+  }
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: white;
+    color: var(--brand-deep);
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+    padding: 16px 32px;
+    font-size: 15px; font-weight: 700;
+    letter-spacing: -0.01em;
+    transition: all 0.2s;
+    position: relative; z-index: 1;
+  }
+  .cta-btn:hover {
+    background: var(--brand-soft);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+  }
+  .cta-note {
+    font-size: 12px;
+    color: rgba(255,255,255,0.25);
+    margin-top: 16px;
+    position: relative; z-index: 1;
+  }
+
+  /* ── FOOTER ──────────────────────────────── */
+  .footer {
+    background: white;
+    border-top: 1px solid var(--border);
+    padding: 24px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--ink-4);
+  }
+  .footer a { color: var(--brand); text-decoration: none; font-weight: 500; }
+
+  /* ── TOAST ───────────────────────────────── */
+  .toast {
+    position: fixed;
+    bottom: 28px; left: 50%;
+    transform: translateX(-50%) translateY(90px);
+    background: #0f0f0f;
+    color: white;
+    padding: 12px 22px;
+    border-radius: 100px;
+    font-size: 13px; font-weight: 500;
+    display: flex; align-items: center; gap: 10px;
+    transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
+    z-index: 9999;
+    white-space: nowrap;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+    pointer-events: none;
+  }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+  .toast-icon {
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    background: #1a7f5a;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px; color: white; flex-shrink: 0;
+  }
+
+  @media (max-width: 600px) {
+    .hero { padding: 64px 20px 72px; }
+    .cta-card { padding: 40px 24px; }
+    .nav { padding: 0 20px; }
+    .wp-body { font-size: 12px; padding: 20px; }
+    .prompt-card-body { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-logo" href="#">
+    <div class="nav-mark">W</div>
+    <span class="nav-name">Writeprint Analyser</span>
+  </a>
+  <span class="nav-pill">Your Report is Ready ✦</span>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">
+    <span class="hero-dot"></span>
+    Powered by Writeprint Analyser
+  </div>
+  <h1>Say Goodbye to<br><span>Robotic AI Writing</span></h1>
+  <p class="hero-sub">We analysed your content and mapped the exact patterns, rhythms, and signatures that make your voice unmistakably yours.</p>
+  <div class="hero-chip">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+    Prepared for &nbsp;<strong>FELISTUS ASENE</strong>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- ── WRITEPRINT ── -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-tag">Your Writeprint</div>
+      <h2 class="section-title">Your Complete Writing Profile</h2>
+      <p class="section-desc">This is your writing DNA. Copy it and use it to train any AI tool to write in your exact voice.</p>
+    </div>
+
+    <div class="wp-card">
+      <div class="wp-toolbar">
+        <div class="wp-dots">
+          <span class="dot dot-r"></span>
+          <span class="dot dot-y"></span>
+          <span class="dot dot-g"></span>
+          <span class="wp-fname">writeprint.md</span>
+        </div>
+        <button class="copy-btn" id="copyBtn" onclick="copyWriteprint()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="9" y="9" width="13" height="13" rx="2"/>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+          <span>Copy Writeprint</span>
+        </button>
+      </div>
+      <div class="wp-body" id="writeprintContent"># Writeprint: **"The Systems Evangelist"**
+
+---
+
+## Core Linguistic Traits
+
+**Structural minimalism** – 9/10  
+Sentences are clipped, staccato. Fragments used deliberately. Avoids subordinate clauses almost religiously. Example: "Tools don't do the work. You do." Not: "While tools are helpful, you're the one doing the work."
+
+**List-driven architecture** – 10/10  
+Nearly every post centers on enumerated points. Uses arrows (→), numbered lists, and nested bullet structures as primary organizational logic. The list *is* the content vehicle, not a formatting choice.
+
+**Declarative confidence** – 9/10  
+Zero hedging language. No "I think" or "maybe" or "in my opinion." Statements land as facts. Example: "Content burnout is a myth." Not: "I believe content burnout might not be as real as we think."
+
+**Social proof engineering** – 8/10  
+Embeds credibility through numbers, timeframes, and implied authority. "I studied 200 LinkedIn creators" / "6 months of content" / "<div class="wp-body" id="writeprintContent">0k+ a month." Specificity = believability.
+
+**Hook-first construction** – 10/10  
+Every post opens with a problem statement or counterintuitive claim designed to stop scrolling. The first sentence exists solely to create cognitive friction or promise value.
+
+**Meta-commentary on AI literacy** – 9/10  
+Positions self as translator between AI capability and creator execution. Frequently names tools, workflows, and technical concepts while keeping explanations accessible. Example: "Promptmetheues ↳ Functions as my prompting IDE."
+
+**CTA layering** – 8/10  
+Multiple calls-to-action stacked at end: a question, a comment prompt, a repost request. Never just one. Uses "PS/PPS" structure to soften the ask while maintaining urgency.
+
+---
+
+## Tone & Register
+
+**Tone: Pragmatic mentor** – 8/10  
+Writes like someone who's solved the problem and is now showing you the map. No condescension, but also no hand-holding. Assumes competence in the reader.
+
+**Register: Professional-casual hybrid** – 7/10  
+Uses internet vernacular ("touch grass," "slop") but never sacrifices clarity for memes. Feels like a Slack DM from a competent colleague, not a corporate blog post.
+
+**Attitude: Anti-ceremony** – 9/10  
+Hostile to fluff, performative effort, and wasted motion. Values compression of time and information. "7-day production cycle compressed to 5 minutes" is the ethos.
+
+---
+
+## Stylistic Features
+
+**Perplexity (sentence-level complexity)** – 3/10  
+Extremely low. Sentences average 8–12 words. Almost no multi-clause constructions. Reads fast because it *thinks* fast.
+
+**Burstiness (rhythm variation)** – 7/10  
+Alternates between ultra-short declaratives and slightly longer explanatory sentences. Uses line breaks aggressively to create visual rhythm. Example: "The best creators build systems that deliver ideas to them." [pause] "PS: Comment 'IDEAS' below..."
+
+**Metaphorical density** – 2/10  
+Nearly zero figurative language. One exception: "blank page spiral" (POST 4). Otherwise, concrete and literal. This is not a writer who reaches for metaphors—they reach for workflows.
+
+**Jargon tolerance** – 8/10  
+Comfortable using technical terms (API, IDE, writeprint, workflow orchestration) but always in service of function, not flex. The jargon is the shortest distance between two points.
+
+**Repetition as branding** – 9/10  
+Key phrases recur across posts: "Save this for later," "Drop it below," "Repost ♻️," "I build AI content systems for marketing teams that produce written content in their brand voice." This is intentional brand-voice anchoring.
+
+---
+
+## Idiosyncratic Markers
+
+**Arrow syntax obsession** – 10/10  
+The "→" and "↳" symbols are signature. They replace colons, em dashes, and conjunctions. Example: "Meetings → Content" / "↳ For automation, AI agents, and workflow orchestration." This is not standard punctuation; it's a stylistic tic that signals efficiency.
+
+**Parenthetical asides as emphasis** – 7/10  
+Uses parentheticals not for digressions but for *punch*. "(It costs me less than </div>00/mo)" / "(Save this for later)" / "(yes i don't write prompts from scratch)." These feel like stage whispers—intimate, insider.
+
+**Named attribution humility** – 6/10  
+Occasionally credits others ("h/t Magali De Reu") but doesn't over-index on it. When present, it's a signal of being plugged into a community, not deferential.
+
+**Anti-capitalization in casual asides** – 6/10  
+"(bye bye keyboard)" / "(yes i don't write prompts from scratch)." Lowercase in parentheticals creates tonal contrast—formal outside, informal inside.
+
+---
+
+## Creativity & Humor
+
+**Creativity (novelty of expression)** – 5/10  
+Not a highly creative *stylist*. Creativity lives in the *systems* being described, not the prose. The writing is a vehicle, not the destination.
+
+**Humor (levity/sarcasm)** – 4/10  
+Occasional deadpan ("LinkedIn right now: Claude posts. Claude comments. Claude code. Claude Cowork. Log off. Touch grass.") but humor is rare. The voice is earnest, not playful.
+
+---
+
+## Custom Factors
+
+**Systemization obsession** – 10/10  
+Every post is about building repeatable processes. The writer thinks in workflows, not one-offs. "The best creators don't wait for inspiration. They build systems that capture it." This is the animating philosophy.
+
+**Implication of insider knowledge** – 9/10  
+Writes as if the reader is *almost* in the know but missing one key piece. "Most people pay for this kind of research. Today you get it for FREE." Creates urgency through the suggestion of asymmetric information.
+
+---
+
+# Verbatim Style Examples
+
+### Example 1: Tool Recommendation Post
+"I replaced 4 subscriptions with one workflow.
+
+Most creators pay $600/mo for tools that do 80% of the same thing.
+
+I consolidated into:
+→ Zapier for simple zaps
+→ N8N for complex orchestration
+→ Airtable as the single source of truth
+
+Total cost: $87/mo.
+Total time saved: 6 hours/week.
+
+The best stacks aren't the biggest. They're the leanest.
+
+PS: What's one tool you'd kill to simplify your stack? Drop it below."
+
+---
+
+### Example 2: Contrarian Take Post
+"You don't need more content ideas.
+
+You need a system that captures the ones you're already having.
+
+Most creators brainstorm once a week and wonder why they run dry.
+
+I built a Notion database that auto-populates from:
+→ Slack messages where I solve client problems
+→ Voice memos I record while walking
+→ Reddit threads I save but never revisit
+
+I haven't "brainstormed" in 4 months.
+
+The ideas were always there. I just wasn't architecting capture.
+
+Repost ♻️ this if you've ever lost a great idea because you didn't write it down."
+
+---
+
+### Example 3: Educational Breakdown Post
+"I reverse-engineered 50 viral LinkedIn posts.
+
+The ones with 100k+ impressions shared 4 structural patterns.
+
+Here's the anatomy of a high-performing post: (Save this for later)
+
+1. Provocative opener
+↳ Challenge a belief or state a surprising fact
+↳ "Most advice on LinkedIn is wrong."
+
+2. Personal credibility
+↳ Anchor in your experience, not theory
+↳ "I tested this across 12 client accounts."
+
+3. Numbered breakdown
+↳ List format with clear takeaways
+↳ People scan. Make it easy.
+
+4. Multi-layer CTA
+↳ Ask a question + request a repost
+↳ "What's your go-to hook structure? Drop it below. Repost ♻️ to help your network write better."
+
+This isn't guesswork. It's pattern recognition.
+
+PS: Which of these 4 do you skip most often? Be honest."
+
+---
+
+### Example 4: System Showcase Post
+"I built a 10-minute onboarding flow that generates brand voice guidelines automatically.
+
+Most agencies spend 3 weeks interviewing clients to "understand their voice."
+
+I automated it.
+
+Here's the system:
+→ Client uploads 5 past blog posts
+→ AI extracts tone, vocabulary, sentence structure
+→ System generates a 2-page brand voice doc
+→ Human reviews and tweaks in under 10 minutes
+
+Total onboarding time: 10 minutes.
+Client satisfaction: identical to the 3-week version.
+
+This is what AI is for. Not replacing humans. Compressing timelines.
+
+PS: Comment "VOICE" and I'll send you the workflow template.
+
+Repost ♻️ if you think onboarding should take minutes, not weeks."
+
+---
+
+### Example 5: Community-Driven Post
+"I asked 100 newsletter creators what stops them from publishing consistently.
+
+The #1 answer wasn't time. It was voice.
+
+"I don't know how to make AI sound like me."
+
+So I built a tool that solves it.
+
+It analyzes your past writing and generates a writeprint—a linguistic fingerprint AI can follow.
+
+You paste it into ChatGPT. Your content sounds like you.
+
+I'm opening beta access to 20 creators this week.
+
+Comment "WRITEPRINT" below and I'll send the link.
+
+PS: If you've ever deleted an AI draft because it "just didn't sound right," this is for you.
+
+PPS: Repost ♻️ to help a creator finally crack the voice problem."</div>
+    </div>
+  </div>
+
+  <!-- ── PROMPT IN ACTION ── -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-tag">Prompt in Action</div>
+      <h2 class="section-title">How to Use Your Writeprint</h2>
+      <p class="section-desc">Here's a battle-tested prompt format. Copy your writeprint above, drop it in, and any AI will write in your exact voice.</p>
+    </div>
+
+    <div class="prompt-card">
+      <div class="prompt-card-header">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        <span>Example Prompt paste this into ChatGPT, Claude, or any AI tool</span>
+      </div>
+      <div class="prompt-card-body">
+        <p>Replace the bracketed sections with your own details. The writeprint does the heavy lifting it tells the AI exactly how you think, write, and structure ideas.</p>
+
+        <div class="prompt-block">
+          <div class="prompt-block-label">prompt.txt</div>
+          <div class="prompt-block-content">Write a LinkedIn post.
+
+AUDIENCE: AI-powered solopreneurs who want newsletters
+that sound human and convert.
+
+SUBJECT: How I gained 1,000 subscribers in 30 days
+
+EMOTIONAL DRIVER: Make the reader feel frustrated but
+hopeful. They've been posting but nothing clicks.
+
+DISALLOWED PHRASES: Avoid phrases like:
+  • "In the evolving landscape"
+  • "It's not X, it's Y"
+  • <span class="ph">[Add your own phrases to avoid]</span>
+
+Content must be written following the WRITEPRINT as it is
+the accurate depiction of this writer.
+
+<span class="ph">[Paste your writeprint here]</span>
+
+STYLE GUIDE: Short lines. No fluff. Internet-native writing.
+
+MIMIC the STYLE and DEPTH of the examples below:
+
+<span class="ph">[Add 2–3 examples of your best posts here]</span></div>
+        </div>
+
+        <div class="prompt-note">
+          <span class="prompt-note-icon">💡</span>
+          <span>The more examples you add at the bottom, the better the output. Your writeprint sets the rules your examples show the AI what great looks like in practice.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="hr"></div>
+
+<!-- ── CTA ── -->
+<div class="container">
+  <div class="cta-wrap">
+    <div class="cta-card">
+
+      <!-- Photo make Drive file public for this to load -->
+      <div class="cta-photo-wrap">
+        <img
+          src="https://lh3.googleusercontent.com/d/1Zrmysvqif_0WehxYnm4vgQqoOiHetaLp"
+          alt="Felistus Asene"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+        />
+        <div class="cta-photo-fallback" style="display:none;">FA</div>
+      </div>
+
+      <p class="cta-byline">Felistus Asene &nbsp;·&nbsp; AI Content Systems</p>
+
+      <h2>Ready to Scale Your Voice Without Losing It?</h2>
+
+      <p>Your writeprint is the foundation. Now imagine a full AI content system that uses it to produce newsletters, posts, and campaigns in your voice on autopilot.</p>
+
+      <ul class="cta-list">
+        <li>
+          <span class="cta-check">✓</span>
+          I build AI newsletter systems that replicate a founder's voice so your content sounds like you, even when you didn't write a single word
+        </li>
+        <li>
+          <span class="cta-check">✓</span>
+          I design end-to-end AI content systems for marketing teams that produce written content at scale without sacrificing brand voice
+        </li>
+        <li>
+          <span class="cta-check">✓</span>
+          Every system is trained on your writeprint so the output is always, unmistakably, you
+        </li>
+      </ul>
+
+      <a href="https://cal.com/felistus-asene/30-minutes-ai-clarity-call" class="cta-btn">
+        → Book a Free Discovery Call
+      </a>
+      <p class="cta-note">30 minutes · No pitch · Just clarity on what's possible for your content</p>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  Generated by <a href="#">Writeprint Analyser</a> &nbsp;·&nbsp;
+  Built by <strong>Felistus Asene</strong> &nbsp;·&nbsp;
+  <a href="https://cal.com/felistus-asene/30-minutes-ai-clarity-call">Work with me →</a>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <span class="toast-icon">✓</span>
+  <span id="toastMsg">Writeprint copied to clipboard!</span>
+</div>
+
+<script>
+  const SVG_COPY  = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>`;
+  const SVG_CHECK = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="13" height="13"><polyline points="20 6 9 17 4 12"/></svg>`;
+
+  function copyWriteprint() {
+    const text = document.getElementById('writeprintContent').innerText;
+    const btn  = document.getElementById('copyBtn');
+
+    const onSuccess = () => {
+      btn.classList.add('copied');
+      btn.innerHTML = SVG_CHECK + '<span>Copied!</span>';
+      showToast('Writeprint copied to clipboard!');
+      setTimeout(() => {
+        btn.classList.remove('copied');
+        btn.innerHTML = SVG_COPY + '<span>Copy Writeprint</span>';
+      }, 2600);
+    };
+
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(text).then(onSuccess).catch(() => fallback(text, onSuccess));
+    } else {
+      fallback(text, onSuccess);
+    }
+  }
+
+  function fallback(text, cb) {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.cssText = 'position:fixed;top:0;left:0;opacity:0;pointer-events:none;';
+    document.body.appendChild(ta);
+    ta.focus(); ta.select();
+    try { if (document.execCommand('copy')) cb(); else showToast('Select text manually and press Ctrl+C'); }
+    catch { showToast('Select text manually and press Ctrl+C'); }
+    document.body.removeChild(ta);
+  }
+
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    document.getElementById('toastMsg').textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2800);
+  }
+</script>
+</body>
+</html>
